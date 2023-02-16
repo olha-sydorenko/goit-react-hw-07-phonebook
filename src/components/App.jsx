@@ -34,6 +34,13 @@ export class App extends React.Component {
     }));
     console.log(contact);
   };
+
+  deleteContact = contactId => {
+    this.setState({
+      contacts: this.state.contacts.filter(contact => contact.id !== contactId),
+    });
+  };
+
   handleFilter = event => {
     this.setState({
       filter: event.target.value,
@@ -54,7 +61,10 @@ export class App extends React.Component {
 
         <h2>Contacts</h2>
         <Filter value={this.state.filter} onFilterChange={this.handleFilter} />
-        <ContactList contacts={filteredContacts} />
+        <ContactList
+          deleteContact={this.deleteContact}
+          contacts={filteredContacts}
+        />
       </>
     );
   }

@@ -24,6 +24,11 @@ export class ContactForm extends React.Component {
     };
 
     this.props.onAddContact(contact);
+
+    this.setState({
+      name: '',
+      number: '',
+    });
   };
 
   render() {
