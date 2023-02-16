@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 export class ContactForm extends React.Component {
   state = {
     name: '',
+    number: '',
   };
 
   handleInputChange = event => {
@@ -19,6 +20,7 @@ export class ContactForm extends React.Component {
 
     const contact = {
       name: this.state.name,
+      number: this.state.number,
     };
 
     this.props.onAddContact(contact);
@@ -34,6 +36,15 @@ export class ContactForm extends React.Component {
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             value={this.state.name}
+            onChange={this.handleInputChange}
+            required
+          />
+          <input
+            type="tel"
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            value={this.state.number}
             onChange={this.handleInputChange}
             required
           />

@@ -8,12 +8,14 @@ export class App extends React.Component {
   state = {
     contacts: [],
     name: '',
+    number: '',
   };
 
-  addContact = ({ name }) => {
+  addContact = ({ name, number }) => {
     const contact = {
       id: nanoid(),
       name,
+      number,
     };
     this.setState(prevState => ({
       contacts: [...prevState.contacts, contact],
