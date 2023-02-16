@@ -14,8 +14,6 @@ export class App extends React.Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
   addContact = ({ name, number }) => {
@@ -24,6 +22,13 @@ export class App extends React.Component {
       name,
       number,
     };
+
+    if (this.state.contacts.some(contact => contact.name === name)) {
+      alert(`${contact.name} is already in contacts!`);
+
+      return;
+    }
+
     this.setState(prevState => ({
       contacts: [...prevState.contacts, contact],
     }));

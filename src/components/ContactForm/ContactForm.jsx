@@ -55,3 +55,7 @@ export class ContactForm extends React.Component {
     );
   }
 }
+
+ContactForm.propTypes = {
+  onAddContact: PropTypes.func.isRequired,
+};
