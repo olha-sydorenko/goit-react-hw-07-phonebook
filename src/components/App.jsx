@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid';
 import { ContactList } from './ContactList/ContactList';
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
+import { Container } from './Container/Container';
 
 export class App extends React.Component {
   state = {
@@ -55,7 +56,7 @@ export class App extends React.Component {
         .includes(this.state.filter.toLowerCase())
     );
     return (
-      <>
+      <Container>
         <h2>Phonebook</h2>
         <ContactForm onAddContact={this.addContact} />
 
@@ -65,7 +66,7 @@ export class App extends React.Component {
           deleteContact={this.deleteContact}
           contacts={filteredContacts}
         />
-      </>
+      </Container>
     );
   }
 }
