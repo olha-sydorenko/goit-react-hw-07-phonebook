@@ -23,8 +23,8 @@ ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.exact({
       name: PropTypes.string.isRequired,
-      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-      number: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
   deleteContact: PropTypes.func,
