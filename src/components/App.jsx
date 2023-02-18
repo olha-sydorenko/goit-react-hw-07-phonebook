@@ -17,6 +17,20 @@ export class App extends React.Component {
     filter: '',
   };
 
+  componentDidMount() {
+    if (JSON.parse(localStorage.getItem('contactsBase'))) {
+      this.setState({
+        contacts: JSON.parse(localStorage.getItem('contactsBase')),
+      });
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contactsBase', JSON.stringify(this.state.contacts));
+    }
+  }
+
   addContact = ({ name, number }) => {
     const contact = {
       id: nanoid(),
