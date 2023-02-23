@@ -13,14 +13,12 @@ export const App = () => {
     { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
   ];
-  const [contacts, setContacts] = useState([...currentContacts]);
-  const [filter, setFilter] = useState('');
 
-  useEffect(() => {
-    if (JSON.parse(localStorage.getItem('contactsBase'))) {
-      setContacts(JSON.parse(localStorage.getItem('contactsBase')));
-    }
-  }, []);
+  const getCurrentContacts = () => {
+    return JSON.parse(localStorage.getItem('contactsBase')) ?? currentContacts;
+  };
+  const [contacts, setContacts] = useState(getCurrentContacts);
+  const [filter, setFilter] = useState('');
 
   // componentDidMount() {
   //     if (JSON.parse(localStorage.getItem('contactsBase'))) {
@@ -31,7 +29,7 @@ export const App = () => {
   //   }
 
   useEffect(() => {
-    if (!contacts) return;
+    // if (!contacts) return;
     localStorage.setItem('contactsBase', JSON.stringify(contacts));
   }, [contacts]);
   console.log(contacts);
@@ -52,7 +50,7 @@ export const App = () => {
       return;
     }
 
-    setContacts(prevContacts => [...prevContacts, contact]);
+    setContacts(contacts => [...contacts, contact]);
     console.log('new', contacts);
     console.log(name.toLowerCase());
   };
