@@ -19,10 +19,12 @@ const contactsSlice = createSlice({
       );
     },
 
-    chooseContact(state, action) {},
+    setFilter(state, action) {
+      state.filter = action.payload;
+    },
   },
 });
 
-export const { appendContact, removeContact, chooseContacts } =
+export const { appendContact, removeContact, setFilter } =
   contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;

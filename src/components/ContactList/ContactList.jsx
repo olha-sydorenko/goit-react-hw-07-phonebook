@@ -1,9 +1,19 @@
 import React from 'react';
 import { List } from './ContactList.styled';
-import PropTypes from 'prop-types';
+
+import { useSelector } from 'react-redux';
 import { Contact } from 'components/Contact/Contact';
 
-export const ContactList = ({ contacts }) => {
+export const ContactList = () => {
+  const contacts = useSelector(state =>
+    state.contactsData.contacts.filter(contact =>
+      contact.name
+        .toLowerCase()
+        .trim()
+        .includes(state.contactsData.filter.toLowerCase())
+    )
+  );
+
   return (
     <List>
       {contacts?.length > 0 &&
@@ -12,14 +22,4 @@ export const ContactList = ({ contacts }) => {
         })}
     </List>
   );
-};
-
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
 };
