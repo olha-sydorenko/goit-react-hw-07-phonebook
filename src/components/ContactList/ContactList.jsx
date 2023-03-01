@@ -3,18 +3,12 @@ import { List } from './ContactList.styled';
 import PropTypes from 'prop-types';
 import { Contact } from 'components/Contact/Contact';
 
-export const ContactList = ({ contacts, deleteContact }) => {
+export const ContactList = ({ contacts }) => {
   return (
     <List>
       {contacts?.length > 0 &&
         contacts.map(contact => {
-          return (
-            <Contact
-              key={contact.id}
-              deleteContact={deleteContact}
-              {...contact}
-            />
-          );
+          return <Contact key={contact.id} {...contact} />;
         })}
     </List>
   );
@@ -22,11 +16,10 @@ export const ContactList = ({ contacts, deleteContact }) => {
 
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
-    PropTypes.exact({
+    PropTypes.shape({
       name: PropTypes.string.isRequired,
       id: PropTypes.string.isRequired,
       number: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
-  deleteContact: PropTypes.func,
 };
