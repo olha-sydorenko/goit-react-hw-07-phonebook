@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { appendContact } from 'redux/contacts/contactsSlice';
+import { addContact } from '../../operations/operations';
 import { Form, Label, Input, AddButton } from './ContactForm.styled';
 
 export const ContactForm = () => {
@@ -44,9 +44,11 @@ export const ContactForm = () => {
       alert(`${contact.name} is already in contacts!`);
       return;
     }
-    dispatch(appendContact(contact));
+
     setName('');
     setNumber('');
+
+    dispatch(addContact(contact));
   };
 
   return (

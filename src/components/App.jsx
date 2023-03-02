@@ -10,7 +10,6 @@ export const App = () => {
     <Container>
       <h2>Phonebook</h2>
       <ContactForm />
-
       <h2>Contacts</h2>
       <Filter />
       <ContactList />
